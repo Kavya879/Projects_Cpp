@@ -1,0 +1,114 @@
+#include <iostream>
+#include <cstdio>
+#include <string>
+using namespace std;
+class bank
+{
+    public:
+    int acc;
+    string name;//string name;
+    int bal;
+    void read()
+    {
+        cout<<"Enter Name:"<<endl;
+        cin.ignore();
+        getline(cin, name);
+        cout<<"Enter Account number:"<<endl;
+        cin>>acc;
+        cout<<"Enter Balance:"<<endl;
+        cin>>bal;
+    }
+    void disp()
+    {
+        cout<<"Customer Name:\t"<<name<<endl;
+        cout<<"Customer Account No.:\t"<<acc<<endl;
+        cout<<"Customer Balance:\t"<<bal<<endl;
+    }
+    inline void dep(int d)
+    {
+        bal=bal+d;
+        cout<<"The new balance is:\t"<<bal<<endl;
+    }
+    inline void with(int w)
+    {
+        if(w<=bal)
+        {
+            bal=bal-w;
+            cout<<"The new balance is:\t"<<bal<<endl;
+        }
+        else
+        {
+            cout<<"Insufficient Balance"<<endl;
+        }
+    }
+    void dispbal()
+    {
+        cout<<"Your current balance is:"<<bal<<endl;
+    }
+
+};
+
+int main()
+{
+    int i=0;
+    bank sbi[3];
+    cout<<"Welcome to C++ BANKING SERVICES"<<endl;
+    king:
+    if(i<3)
+    {
+    sbi[i].read();
+    sbi[i].disp();
+    char ch;
+    p1:
+    cout<<"If you want to deposit , end d "<<endl<<"If you want to withdraw , enter w"<<endl<<"If you want to cancel , enter c"<<endl;
+    cin>>ch;
+    ch=tolower(ch);
+    if(ch=='d')
+    {
+        int amt;
+        cout<<"Enter amount to deposit"<<endl;
+        cin>>amt;
+        sbi[i].dep(amt);
+    }
+    else if(ch=='w')
+    {
+        int am1;
+        cout<<"Enter amount to withdraw"<<endl;
+        cin>>am1;
+        sbi[i].with(am1);
+    }
+    else if(ch=='c')
+    {
+        goto p2;
+    }
+    else{
+        cout<<"Out of Bounds Input , Enter Again"<<endl;
+        goto p1;
+    }
+    p2:
+    char fin;
+    p3:
+    cout<<"Do you want to enter details of someone else? Enter Y/N"<<endl;
+    cin>>fin;
+    fin=toupper(fin);
+    if(fin=='Y')
+    {
+        i++;
+        goto king;
+    }
+    else if(fin=='N')
+    {
+        cout<<"Thank you for using our services"<<endl;
+    }
+    else
+    {
+    cout<<"Invalid input entered  , kindly enter again " <<endl;
+    goto p3;
+    }
+    }
+    else
+    {
+        cout<<"Server Overloaded , sorry for inconvinience"<<endl;
+    }
+    return 0;
+}
